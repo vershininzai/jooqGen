@@ -20,7 +20,7 @@ To generate classes, use testcontainers.
 ~~~~
 
 ### How to use
-You can put checkout JooqGen in your project and, if necessary, 
+You can put class JooqGen in your project and, if necessary, 
 run it to update the generated classes when changes in liquibase scripts
 
 ### Run
