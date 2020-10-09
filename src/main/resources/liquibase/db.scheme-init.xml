@@ -1,0 +1,26 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="20201009-01" author="Alexandr Vershinin">
+        <createTable tableName="test">
+            <column name="id" type="int" remarks="Уникальный идентификатор">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="code" type="varchar(255)" remarks="Код"/>
+            <column name="name" type="varchar(255)" remarks="Название"/>
+            <column name="coordinates" type="geometry" remarks="Координаты участа"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20201009-02" author="Alexandr Vershinin">
+        <sql>
+            CREATE OR REPLACE VIEW test_v AS
+            select t.id, t.code, t.name, t.coordinates
+            from test t
+            where ST_Intersects(Geography(st_geomfromgeojson('{"type":"Polygon","coordinates":[[[0.0,0.0],[0.0,5.0],[5.0,5.0],[5.0,0.0],[0.0,0.0]]]}')), coordinates);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
