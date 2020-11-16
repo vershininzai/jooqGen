@@ -1,5 +1,5 @@
 # jooqGen
-## generation of jooq classes by scripts liquibase
+## generation of jooq classes by scripts liquibase with testcontainers
 To generate classes, use testcontainers.
 
 ### Generation includes the following steps:
